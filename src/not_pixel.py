@@ -9,7 +9,7 @@ import aiohttp
 class NotPixel():
     def __init__(self, telegram_mini_app_init_data, user_agent):
         self.headers = {
-            'Authorization': telegram_mini_app_init_data,
+            'Authorization': f'initData {telegram_mini_app_init_data}',
             'User-Agent': user_agent,
         }
 
