@@ -1,6 +1,7 @@
 from models.user_status import UserStatus
 from models.repaint import Repaint
 from models.claim import Claim
+from models.pixel import Pixel
 
 from random import randint
 import aiohttp
@@ -16,6 +17,8 @@ class NotPixel():
             base_url='https://notpx.app',
             headers=self.headers,
         )
+
+        self.map_width = 1000
 
     async def get_status(self) -> UserStatus | None:
         user_status_raw = await self.session.request(
@@ -39,8 +42,30 @@ class NotPixel():
 
         return status_model
 
-    async def get_pixel(self):
-        return NotImplemented
+    async def get_pixel(self, pixel_id: int) -> Pixel | None:
+        pixel_raw = await self.session.request(
+            url=f'/api/v1/image/get/{pixel_id}',
+            method='GET',
+        )
+
+        if pixel_raw.status != 200:
+            return None
+
+        pixel = await pixel_raw.json()
+
+        pixel_model = Pixel(
+            x=pixel['pixel']['x'],
+            y=pixel['pixel']['y'],
+            owner_id=pixel['pixel']['ownerId'],
+            repaints=pixel['pixel']['repaints'],
+            color=pixel['pixel']['color'],
+            date_obtained=pixel['pixel']['dateObtained'],
+        )
+
+        return pixel_model
+
+    async def get_pixel_by_coords(self, x: int, y: int) -> Pixel | None:
+        return await self.get_pixel(self.map_width * y + (x + 1))
 
     async def set_pixel(self, pixel_id: int, new_color: str) -> Repaint | None:
         repaint_raw = await self.session.request(
