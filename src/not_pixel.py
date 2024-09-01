@@ -1,5 +1,6 @@
 from models.user_status import UserStatus
 from models.repaint import Repaint
+from models.claim import Claim
 
 from random import randint
 import aiohttp
@@ -65,5 +66,19 @@ class NotPixel():
             new_color='#e46e6e',
         )
 
-    async def claim(self):
-        return NotImplemented
+    async def claim(self) -> Claim | None:
+        claim_raw = await self.session.request(
+            url='/api/v1/mining/claim',
+            method='GET',
+        )
+
+        if claim_raw.status != 200:
+            return None
+
+        claim = await claim_raw.json()
+
+        claim_model = Claim(
+            claimed=claim['claimed']
+        )
+
+        return claim_model
