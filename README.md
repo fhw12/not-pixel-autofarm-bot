@@ -1,5 +1,8 @@
 # NotPixel AutoFarm Bot
 
+## Use this project only for educational purpose
+## NotPixel developers can block your account if you're using any script
+
 AutoFarm bot for NotPixel MiniApp (@notpixel)
 
 ## Functionality of the bot:
