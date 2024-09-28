@@ -3,14 +3,14 @@ class UserStatus():
         self,
         coins: float,
         claimed: float,
-        total_user_pixels: int,
+        repaints_total: int,
         user_balance: float,
         charges: int,
         max_charges: int,
     ):
         self.coins = coins
         self.claimed = claimed
-        self.total_user_pixels = total_user_pixels
+        self.repaints_total = repaints_total
         self.user_balance = user_balance
         self.charges = charges
         self.max_charges = max_charges
@@ -20,7 +20,7 @@ class UserStatus():
             'UserStatus('
                 f'\n\tcoins: {self.coins}'
                 f'\n\tclaimed: {self.claimed}'
-                f'\n\ttotal_user_pixels: {self.total_user_pixels}'
+                f'\n\repaints_total: {self.repaints_total}'
                 f'\n\tuser_balance: {self.user_balance}'
                 f'\n\tcharges: {self.charges}'
                 f'\n\tmax_charges: {self.max_charges}'

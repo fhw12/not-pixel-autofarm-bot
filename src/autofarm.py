@@ -21,7 +21,7 @@ async def autofarm(not_pixel: NotPixel):
             await asyncio.sleep(10)
             continue
 
-        print(f'[{time_now()}] Energy: {user_status.charges}/{user_status.max_charges} | Your pixels: {user_status.total_user_pixels} | Your balance: {user_status.user_balance}')
+        print(f'[{time_now()}] Energy: {user_status.charges}/{user_status.max_charges} | Your pixels: {user_status.repaints_total} | Your balance: {user_status.user_balance}')
 
         if randint(0, 10) == 0:
             print(f'[{time_now()}] Trying to claim')

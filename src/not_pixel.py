@@ -34,7 +34,7 @@ class NotPixel():
         status_model = UserStatus(
             coins = user_status['coins'],
             claimed = user_status['claimed'],
-            total_user_pixels = user_status['totalUserPixels'],
+            repaints_total = user_status['repaintsTotal'],
             user_balance = user_status['userBalance'],
             charges = user_status['charges'],
             max_charges = user_status['maxCharges'],
